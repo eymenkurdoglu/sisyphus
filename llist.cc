@@ -41,17 +41,40 @@ if ( n ) { a->next = n->next; delete n; }
 
 llist* llist::my_mergeTwoSortedLists( llist* a, llist* b )
 {
-llist* a_ptr, b_ptr;
+// merges in place
 llist* head = a->data < b->data ? a : b;
 
-if ( head == a ) a_ptr = a->next;
-else b_ptr = b->next;
+if ( head == a ) a = a->next;
+else b = b->next;
 
-while ( a_ptr && b_ptr ) {
-	llist* n = a_ptr->data > b_ptr->data ? b_ptr : a_ptr;
+while ( a && b ) {
+	llist* n = a->data >= b->data ? b : a;
 	tail->next = n;
 	tail = n;
-	n == a_ptr ? a_ptr : b_ptr = n->next;
+	(n == a ? a : b) = n->next;
 }
-tail->next = a_ptr ? b_ptr : a_ptr;
+tail->next = a ? a : b;
+
+return head;
+}
+
+void llist::my_append( llist* a, llist* node )
+{
+if ( !node ) return;
+node->next = a;
+a = node;
+}
+
+llist* llist::my_reverseList( llist* fw )
+{
+
+llist* bw = NULL, temp;
+
+while ( fw ) {
+	temp = fw->next;
+	my_append( bw, fw );
+	fw = temp;
+}
+
+return bw;
 }
