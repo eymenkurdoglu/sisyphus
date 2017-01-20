@@ -1,18 +1,6 @@
 llist* llist::search( llist* a, int y )
 {
 
-if ( a->data == y ) return a;
-while ( a->next ) {
-	a = a->next;
-	if ( a->data == y ) return a;	
-}
-
-return NULL;
-}
-
-llist* llist::episearch( llist* a, int y )
-{
-
 while ( a && a->data != y ) a = a->next;
 
 return a;
@@ -35,6 +23,16 @@ void llist::deleteAfter( llist* a )
 
 llist* n = a->next;
 if ( n ) { a->next = n->next; delete n; }
+
+}
+
+void llist::deleteThis( llist* a )
+{
+
+a->data = (a->next)->data;
+a->next = (a->next)->next;
+
+delete a->next;
 
 }
 
@@ -76,4 +74,13 @@ while ( fw ) {
 }
 
 return bw;
+}
+
+bool llist::testOverlapping( llist* a, llist* b )
+{
+
+while ( a->next ) a = a->next;
+while ( b->next ) b = b->next;
+
+return a == b ? true : false;
 }

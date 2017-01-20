@@ -9,6 +9,7 @@ class bt {
 public:
 	explicit bt( int x, bt* l, bt* r ) { data = x; left = l; right = r; };
 	void inorderWalk( void );
+	bool isHeightBalanced( void ); // handle iteratively
 private:
 	int data;
 	bt* left, *right;

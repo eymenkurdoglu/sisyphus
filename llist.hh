@@ -4,20 +4,19 @@
 class llist {
 
 public:
-	llist( int x ) { data = x; next = NULL; };
+	explicit llist( int x ) { data = x; next = NULL; };
+
 	llist* search( llist*, int );
 	void insertAfter( llist*, int );
 	void deleteAfter( llist* );
+	void deleteThis( llist* );
 	llist* mergeTwoSortedLists( llist*, llist* );
 	void append( llist*, llist* );
 	llist* reverseList( llist* );
- 
-	llist* episearch( llist*, int );
-
+	bool testOverlapping( llist*, llist* ); 
 private:
 	int data;
 	llist* next;
-
 };
 
 #endif
