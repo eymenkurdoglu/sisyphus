@@ -1,5 +1,4 @@
-
-llist* llist::my_search( llist* a, int y )
+llist* llist::search( llist* a, int y )
 {
 
 if ( a->data == y ) return a;
@@ -11,7 +10,7 @@ while ( a->next ) {
 return NULL;
 }
 
-llist* llist::epi_search( llist* a, int y )
+llist* llist::episearch( llist* a, int y )
 {
 
 while ( a && a->data != y ) a = a->next;
@@ -19,7 +18,7 @@ while ( a && a->data != y ) a = a->next;
 return a;
 }
 
-void llist::my_insertAfter( llist* a, int x )
+void llist::insertAfter( llist* a, int x )
 {
 
 if ( !a ) return;
@@ -31,7 +30,7 @@ a->next = node;
 
 }
 
-void llist::my_deleteAfter( llist* a )
+void llist::deleteAfter( llist* a )
 {
 
 llist* n = a->next;
@@ -39,7 +38,7 @@ if ( n ) { a->next = n->next; delete n; }
 
 }
 
-llist* llist::my_mergeTwoSortedLists( llist* a, llist* b )
+llist* llist::mergeTwoSortedLists( llist* a, llist* b )
 {
 // merges in place
 llist* head = a->data < b->data ? a : b;
@@ -58,14 +57,14 @@ tail->next = a ? a : b;
 return head;
 }
 
-void llist::my_append( llist* a, llist* node )
+void llist::append( llist* a, llist* node )
 {
 if ( !node ) return;
 node->next = a;
 a = node;
 }
 
-llist* llist::my_reverseList( llist* fw )
+llist* llist::reverseList( llist* fw )
 {
 
 llist* bw = NULL, temp;
