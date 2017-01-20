@@ -6,6 +6,7 @@
 #include "bt.hh"
 #include "llist.hh"
 #include "stack.hh"
+#include "chapter6.hh"
 
 using namespace std;
 
@@ -14,17 +15,16 @@ int main ()
 
 int N; cin >> N;
 
-srand( time( NULL ) );
+srand( time( nullptr ) );
 
 vector<int> v;
 
 for ( int i = 0; i < N; i++ )
-	v.push_back( rand()%20 );
+	v.push_back( rand()%100 );
 
-for ( int i : v ) cout << i << ' ';
-cout << endl;
-
-
+ch6::print( v );
+ch6::evenOdd( v );
+ch6::print( v );
 
 return 0;
 }
