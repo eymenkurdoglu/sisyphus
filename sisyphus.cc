@@ -23,7 +23,7 @@ for ( int i = 0; i < N; i++ )
 	v.push_back( rand()%100 );
 
 ch6::print( v );
-ch6::evenOdd( v );
+ch6::dutchFlag( v, 69 );
 ch6::print( v );
 
 return 0;
