@@ -2,29 +2,24 @@
 #include <cstdlib>
 #include <vector>
 #include <ctime>
+#include <unordered_map>
+#include <string>
 
 #include "bt.hh"
 #include "llist.hh"
 #include "stack.hh"
+#include "graph.hh"
+
 #include "chapter6.hh"
+#include "chapter10.hh"
 
 using namespace std;
 
-int main ()
-{
-
-int N; cin >> N;
+int main (int argc, char* argv[] ) {
 
 srand( time( nullptr ) );
 
-vector<int> v;
 
-for ( int i = 0; i < N; i++ )
-	v.push_back( rand()%100 );
-
-ch6::print( v );
-ch6::dutchFlag( v, 69 );
-ch6::print( v );
 
 return 0;
 }

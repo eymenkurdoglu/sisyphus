@@ -19,21 +19,21 @@ a->next = node;
 }
 
 void llist::deleteAfter( llist* a )
-{
-
-llist* n = a->next;
-if ( n ) { a->next = n->next; delete n; }
-
+{ 
+if ( a ) {
+	llist* n = a->next;
+	if ( n ) { a->next = n->next; delete n; } 
+}
 }
 
-void llist::deleteThis( llist* a )
+void llist::deleteThis( llist* a ) // use only if the element to be deleted is not the last!!
 {
-
-a->data = (a->next)->data;
-a->next = (a->next)->next;
-
-delete a->next;
-
+if ( a->next ) {
+	a->data = (a->next)->data;
+	llist* temp = a->next;
+	a->next = (a->next)->next;
+	delete temp;
+} 
 }
 
 llist* llist::mergeTwoSortedLists( llist* a, llist* b )
