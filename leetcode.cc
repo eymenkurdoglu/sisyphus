@@ -105,22 +105,28 @@ int maxArea(vector<int>& height) {
 return max;
 }
 
-// Given a collection of distinct numbers, return all possible permutations.
+// Given a collection of numbers that might contain duplicates, return all possible unique permutations.
 void recursive_perm ( vector<int>& b, int j, vector< vector<int> >& allperms ) {
 
 	if ( j == b.size()-1 ) {
 		allperms.emplace_back( b );
+		for ( auto x : b ) cout << x << " ";
+		cout << endl;
 		return;
 	}
-
+	
+	unordered_set<int> H;
+	
 	for ( int i = j; i < b.size(); i++ ) {
+		if ( H.count( b[i] ) == 0 ) { H.emplace( b[i] ); }
+		else { cout << "."; continue; }
 		swap( b[i], b[j] );
 		recursive_perm( b, j+1, allperms );
 		swap( b[i], b[j] );
 	}
 }
 
-vector<vector<int>> permute(vector<int>& a) {
+vector<vector<int>> permuteUnique(vector<int>& a) {
 	vector< vector<int> > allperms;
 	vector<int> b( a );
 	recursive_perm ( b, 0, allperms );
@@ -143,6 +149,20 @@ vector<int> searchRange(vector<int>& nums, int x) {
 	if ( l == r && nums[l] == x ) leftrange = l;
 	else return vector<int>{-1,-1};
 	
+	// EPI solution for leftrange
+	//result = -1;
+	//while ( l <= r ) {
+		//int m = l + (r-l)/2;
+		//if ( a[m] > x ) {
+			//r = m-1;
+		//} else if ( a[m] == x ) {
+			//result = m; r = m-1;
+		//} else {
+			//l = m+1;
+		//}
+	//}
+	//return result;
+	
 	r = nums.size()-1;
 	while ( l < r ) {
 		int m = l + (r-l)/2;
@@ -154,3 +174,26 @@ vector<int> searchRange(vector<int>& nums, int x) {
 	rightrange = l;
 	return vector<int>{leftrange, rightrange};
 }
+
+void recursivelist( string& digits, string& sofar, int j, vector<string>& map, vector<string>& allcomb ) {
+	if ( j == digits.size() ) {
+		allcomb.push_back( sofar );
+		return;
+	}
+	int d = atoi( digits.substr(j,1).c_str() );
+	for ( int i = 0; i < map[d].size(); i++ ) {
+		sofar.push_back( map[d][i] );
+		recursivelist( digits, sofar, j+1, map, allcomb );
+		sofar.pop_back();
+	}
+}
+
+vector<string> letterCombinations(string digits) {
+	vector<string> allcomb;
+	vector<string> map = { " ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+	string A;
+	recursivelist( digits, A, 0, map, allcomb );
+	return allcomb;
+}
+
+
